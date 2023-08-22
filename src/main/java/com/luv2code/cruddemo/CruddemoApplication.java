@@ -29,7 +29,7 @@ public class CruddemoApplication {
 			//queryForClient(clientDAO);
 
 			//queryForClientByLastName(clientDAO);
-			
+
 			//updateClientFirstName(clientDAO);
 
 			//deleteClient(clientDAO);
