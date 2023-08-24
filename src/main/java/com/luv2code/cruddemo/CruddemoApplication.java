@@ -22,9 +22,9 @@ public class CruddemoApplication {
 		return runner ->{
 			//createClient(clientDAO);
 
-			createMultipleClients(clientDAO);
+			//createMultipleClients(clientDAO);
 
-			//readClient(clientDAO);
+				readClient(clientDAO);
 
 			//queryForClient(clientDAO);
 

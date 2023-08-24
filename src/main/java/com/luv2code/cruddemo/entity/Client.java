@@ -8,7 +8,8 @@ public class Client {
 
     // define fields
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator="applidocClientSequence", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="applidocClientSequence", sequenceName = "applidoc_client_id_seq", allocationSize = 1)
     @Column(name="id")
     private int id;
     @Column(name="first_name")
