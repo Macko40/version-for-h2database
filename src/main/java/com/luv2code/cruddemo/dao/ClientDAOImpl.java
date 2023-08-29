@@ -35,8 +35,8 @@ public class ClientDAOImpl implements ClientDAO{
     @Override
     public List<Client> findAllClient() {
         // create a query
-        TypedQuery <Client> theQuery = entityManager.createQuery("from Client", Client.class);
-        // return results
+        TypedQuery <Client> theQuery = entityManager.createQuery("from Client order by lastName", Client.class);
+        // return query results
         return theQuery.getResultList();
     }
 

@@ -5,7 +5,7 @@ import com.luv2code.cruddemo.entity.Client;
 import java.util.List;
 
 public interface ClientDAO {
-     public void saveClient(Client theClient);
+    public void saveClient(Client theClient);
 
     public Client findClientById(Integer id);
 

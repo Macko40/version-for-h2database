@@ -22,9 +22,9 @@ public class CruddemoApplication {
 		return runner ->{
 			//createClient(clientDAO);
 
-			//createMultipleClients(clientDAO);
+			createMultipleClients(clientDAO);
 
-				readClient(clientDAO);
+			//readClient(clientDAO);
 
 			//queryForClient(clientDAO);
 
@@ -47,7 +47,7 @@ public class CruddemoApplication {
 	private void deleteClient(ClientDAO clientDAO) {
 
 		// Retrieve Client base on Id: primary key
-		int clientId = 3006;
+		int clientId = 202;
 		System.out.println("Deleting Client id: " + clientId);
 
 		// deleting Client
@@ -58,28 +58,26 @@ public class CruddemoApplication {
 
 	private void updateClientFirstName(ClientDAO clientDAO) {
 		// Retrieve Client based on the Id: primary key
-		int clientId = 3005;
+		int clientId = 203;
 		System.out.println("Getting Client id: " + clientId);
 
 		Client theClient = clientDAO.findClientById(clientId);
 
-		// Updating Client
+		// Change first Name to "John"
 		System.out.println("Updating Clients...");
-		// updating the First Name to Scooby
-		theClient.setFirstName("Carla");
+		theClient.setFirstName("John");
+
+		// Updating Client
 		clientDAO.updateClientFirstName(theClient);
 
 		// display updating Client
 		System.out.println("Updated Client: " + theClient);
 
-
-
-
 	}
 
 	private void queryForClientByLastName(ClientDAO clientDAO) {
 		// get a List
-		List<Client> theClientsLastName = clientDAO.findClientByLastName("Pena");
+		List<Client> theClientsLastName = clientDAO.findClientByLastName("Perez");
 
 		// display list of Clients
 		for(Client tempClient : theClientsLastName){
