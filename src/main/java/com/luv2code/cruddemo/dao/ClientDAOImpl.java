@@ -35,7 +35,7 @@ public class ClientDAOImpl implements ClientDAO{
     @Override
     public List<Client> findAllClient() {
         // create a query
-        TypedQuery <Client> theQuery = entityManager.createQuery("from Client order by lastName", Client.class);
+        TypedQuery <Client> theQuery = entityManager.createQuery("FROM Client order by lastName", Client.class);
         // return query results
         return theQuery.getResultList();
     }
@@ -43,7 +43,7 @@ public class ClientDAOImpl implements ClientDAO{
     @Override
     public List<Client> findClientByLastName(String theLastName) {
         // create a query
-        TypedQuery <Client> queryFindLastName = entityManager.createQuery("from Client where lastName=:theData", Client.class);
+        TypedQuery <Client> queryFindLastName = entityManager.createQuery("FROM Client where lastName=:theData", Client.class);
         // set query parameters
         queryFindLastName.setParameter("theData", theLastName);
 
