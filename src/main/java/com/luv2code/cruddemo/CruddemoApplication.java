@@ -1,7 +1,7 @@
 package com.luv2code.cruddemo;
 
-import com.luv2code.cruddemo.dao.ClientDAO;
-import com.luv2code.cruddemo.entity.Client;
+import com.luv2code.cruddemo.dao.EmployeeDAO;
+import com.luv2code.cruddemo.entity.Employee;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,132 +18,136 @@ public class CruddemoApplication {
 	}
 
     @Bean
-	public CommandLineRunner commandLineRunner(ClientDAO clientDAO){
+	public CommandLineRunner commandLineRunner(EmployeeDAO employeeDAO){
 		return runner ->{
-			//createClient(clientDAO);
+			//createEmployee(employeeDAO);
 
-			createMultipleClients(clientDAO);
+			//createMultipleClients(employeeDAO);
 
-			//readClient(clientDAO);
+			//readClient(employeeDAO);
 
-			//queryForClient(clientDAO);
+			//queryForClient(employeeDAO);
 
-			//queryForClientByLastName(clientDAO);
+			//queryForClientByLastName(employeeDAO);
 
-			//updateClientFirstName(clientDAO);
+			//updateClientFirstName(employeeDAO);
 
-			//deleteClient(clientDAO);
+			//deleteClient(employeeDAO);
 
-			//deleteAllClients(clientDAO);
+			//deleteAllClients(employeeDAO);
 		};
 	}
 
-	private void deleteAllClients(ClientDAO clientDAO) {
+	private void deleteAllClients(EmployeeDAO employeeDAO) {
 		System.out.println("Deleting all Clients");
-		int numRowsDeleted = clientDAO.deleteAll();
+		int numRowsDeleted = employeeDAO.deleteAll();
 		System.out.println("Number of deleted Clients: " + numRowsDeleted );
 	}
 
-	private void deleteClient(ClientDAO clientDAO) {
+	private void deleteClient(EmployeeDAO employeeDAO) {
 
 		// Retrieve Client base on Id: primary key
-		int clientId = 202;
-		System.out.println("Deleting Client id: " + clientId);
+		int employeetId = 1;
+		System.out.println("Deleting Client id: " + employeetId);
 
 		// deleting Client
 		System.out.println("Deleting Client...");
-		clientDAO.deleteClient(clientId);
+		employeeDAO.deleteEmployeeById(employeetId);
 
 	}
 
-	private void updateClientFirstName(ClientDAO clientDAO) {
+	private void updateClientFirstName(EmployeeDAO employeeDAO) {
 		// Retrieve Client based on the Id: primary key
 		int clientId = 203;
 		System.out.println("Getting Client id: " + clientId);
 
-		Client theClient = clientDAO.findClientById(clientId);
+		Employee theEmployee = employeeDAO.findEmployeeById(clientId);
 
 		// Change first Name to "John"
 		System.out.println("Updating Clients...");
-		theClient.setFirstName("John");
+		theEmployee.setFirstName("John");
 
 		// Updating Client
-		clientDAO.updateClientFirstName(theClient);
+		employeeDAO.updateEmployeeFirstName(theEmployee);
 
 		// display updating Client
-		System.out.println("Updated Client: " + theClient);
+		System.out.println("Updated Client: " + theEmployee);
 
 	}
 
-	private void queryForClientByLastName(ClientDAO clientDAO) {
+	private void queryForClientByLastName(EmployeeDAO employeeDAO) {
 		// get a List
-		List<Client> theClientsLastName = clientDAO.findClientByLastName("Perez");
+		List<Employee> theClientsLastName = employeeDAO.findEmployeeByLastName("Perez");
 
 		// display list of Clients
-		for(Client tempClient : theClientsLastName){
-			System.out.println(tempClient);
+		for(Employee tempEmployee : theClientsLastName){
+			System.out.println(tempEmployee);
 		}
 	}
 
-	private void queryForClient(ClientDAO clientDAO) {
+	private void queryForClient(EmployeeDAO employeeDAO) {
 		// get a  list of Clients
-		List<Client> theClients = clientDAO.findAllClient();
+		List<Employee> theEmployees = employeeDAO.findAllEmployee();
 
 		// display list of Clients
-		for(Client tempClient : theClients){
-			System.out.println(tempClient);
+		for(Employee tempEmployee : theEmployees){
+			System.out.println(tempEmployee);
 		}
 
 	}
 
-	private void readClient(ClientDAO clientDAO) {
+	private void readClient(EmployeeDAO employeeDAO) {
 		//create a new Client
 		System.out.println("Creating a new Client...");
-		Client tempClient = new Client("Refael", "Rahavi", "rahavia@gmail.com");
+		Employee tempEmployee = new Employee("Refael", "Rahavi", "rahavia@gmail.com");
 
 		//save the Client
 		System.out.println("Saving the Clients");
-		clientDAO.saveClient(tempClient);
+		employeeDAO.saveEmployee(tempEmployee);
 
 		//display id form saved Client
-		int theId = tempClient.getId();
+		int theId = tempEmployee.getId();
 		System.out.println("Saved Client.Generated id: " + theId);
 
 		//Retrieve/Read Client base on id primary key
 		System.out.println("Retrieving Client with id: " + theId);
-		Client myClient = clientDAO.findClientById(theId);
+		Employee myEmployee = employeeDAO.findEmployeeById(theId);
 
 		// Display Client
-		System.out.println("Found the Client: " + myClient);
+		System.out.println("Found the Client: " + myEmployee);
 
 	}
 
-	private void createMultipleClients(ClientDAO clientDAO) {
-		// creating 3 Clients Objects
-		System.out.println("Creating 3 new Clients...");
-		Client tempClient1 = new Client("Joan", "Perez", "joanp@email.com");
-		Client tempClient2 = new Client("Carlos", "Martinez", "carlosma@email.com");
-		Client tempClient3 = new Client("Sofia", "Pena", "sofiapena@email.com");
+	private void createMultipleClients(EmployeeDAO employeeDAO) {
+		// creating 5 Employee Objects
+		System.out.println("Creating 5 new Employee...");
+		Employee tempEmployee1 = new Employee("Leslie", "Andrews", "leslie@email.com");
+		Employee tempEmployee2 = new Employee("Emma", "Baumgarten", "emma@email.com");
+		Employee tempEmployee3 = new Employee("Avani", "Gupta", "Gupta@email.com");
+		Employee tempEmployee4 = new Employee("Yuri", "Petrov", "yuri@email.com");
+		Employee tempEmployee5 = new Employee("Juan", "Vega", "juan@email.com");
 
 		// save the Client Objects
-		System.out.println("Saving the Clients");
-		clientDAO.saveClient(tempClient1);
-		clientDAO.saveClient(tempClient2);
-		clientDAO.saveClient(tempClient3);
+		System.out.println("Saving the Employee");
+		employeeDAO.saveEmployee(tempEmployee1);
+		employeeDAO.saveEmployee(tempEmployee2);
+		employeeDAO.saveEmployee(tempEmployee3);
+		employeeDAO.saveEmployee(tempEmployee4);
+		employeeDAO.saveEmployee(tempEmployee5);
 	}
 
-	private void createClient(ClientDAO clientDAO){
+	private void createEmployee(EmployeeDAO employeeDAO){
 
-		// creating a new Client Object
-		System.out.println("Creating a new Client...");
-		Client tempClient = new Client("Maria", "Perez", "mariap@email.com");
+		// creating a new Employee Object
+		System.out.println("Creating a new Employee...");
+		Employee tempEmployee = new Employee("Maria", "Perez", "mariap@email.com");
 
-		// save the Client Object
-		System.out.println("Saving the Client...");
-		clientDAO.saveClient(tempClient);
+		// save the Employee Object
+		System.out.println("Saving the Employee...");
+		employeeDAO.saveEmployee(tempEmployee);
 
-		// Display id from the saving Client
-		System.out.println("Saved Client. Generated id " + tempClient.getId());
+		// Display id from the saving Employee
+		System.out.println("Saved Employee. Generated id " + tempEmployee.getId());
 
 
 	}

@@ -3,13 +3,13 @@ package com.luv2code.cruddemo.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="client")
-public class Client {
+@Table(name="employee")
+public class Employee {
 
     // define fields
     @Id
     @GeneratedValue(generator="applidocClientSequence", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="applidocClientSequence", sequenceName = "applidoc_client_id_seq", allocationSize = 1)
+    @SequenceGenerator(name="applidocClientSequence", sequenceName = "applidoc_employee_id_seq", allocationSize = 1)
     @Column(name="id")
     private int id;
     @Column(name="first_name")
@@ -20,11 +20,11 @@ public class Client {
     private String email;
 
     // define constructor
-    public Client(){
+    public Employee(){
 
     }
 
-    public Client(String firstName, String lastName, String email) {
+    public Employee(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -70,7 +70,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" +
+        return "Employee{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
