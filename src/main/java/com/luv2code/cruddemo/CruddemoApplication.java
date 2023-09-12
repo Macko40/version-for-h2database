@@ -1,7 +1,8 @@
 package com.luv2code.cruddemo;
 
-import com.luv2code.cruddemo.dao.EmployeeDAO;
+import com.luv2code.cruddemo.dao.EmployeeRepository;
 import com.luv2code.cruddemo.entity.Employee;
+import java.util.Optional;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,33 +19,33 @@ public class CruddemoApplication {
 	}
 
     @Bean
-	public CommandLineRunner commandLineRunner(EmployeeDAO employeeDAO){
+	public CommandLineRunner commandLineRunner(EmployeeRepository employeeRepository){
 		return runner ->{
-			//createEmployee(employeeDAO);
+			//createEmployee(employeeRepository);
 
-			//createMultipleClients(employeeDAO);
+			//createMultipleClients(employeeRepository);
 
-			//readClient(employeeDAO);
+			//readClient(employeeRepository);
 
-			//queryForClient(employeeDAO);
+			//queryForClient(employeeRepository);
 
-			//queryForClientByLastName(employeeDAO);
+			//queryForClientByLastName(employeeRepository);
 
-			//updateClientFirstName(employeeDAO);
+			//updateClientFirstName(employeeRepository);
 
-			//deleteClient(employeeDAO);
+			//deleteClient(employeeRepository);
 
-			//deleteAllClients(employeeDAO);
+			//deleteAllClients(employeeRepository);
 		};
 	}
 
-	private void deleteAllClients(EmployeeDAO employeeDAO) {
+	private void deleteAllClients(EmployeeRepository employeeRepository) {
 		System.out.println("Deleting all Clients");
-		int numRowsDeleted = employeeDAO.deleteAll();
-		System.out.println("Number of deleted Clients: " + numRowsDeleted );
+		//int numRowsDeleted = employeeRepository.deleteAll();
+		//System.out.println("Number of deleted Clients: " + numRowsDeleted );
 	}
 
-	private void deleteClient(EmployeeDAO employeeDAO) {
+	private void deleteClient(EmployeeRepository employeeRepository) {
 
 		// Retrieve Client base on Id: primary key
 		int employeetId = 1;
@@ -52,42 +53,42 @@ public class CruddemoApplication {
 
 		// deleting Client
 		System.out.println("Deleting Client...");
-		employeeDAO.deleteEmployeeById(employeetId);
+		employeeRepository.deleteById(employeetId);
 
 	}
 
-	private void updateClientFirstName(EmployeeDAO employeeDAO) {
+	private void updateClientFirstName(EmployeeRepository employeeRepository) {
 		// Retrieve Client based on the Id: primary key
 		int clientId = 203;
 		System.out.println("Getting Client id: " + clientId);
 
-		Employee theEmployee = employeeDAO.findEmployeeById(clientId);
+		Optional<Employee> theEmployee = employeeRepository.findById(clientId);
+
 
 		// Change first Name to "John"
 		System.out.println("Updating Clients...");
-		theEmployee.setFirstName("John");
+		//theEmployee("John");
 
 		// Updating Client
-		employeeDAO.updateEmployeeFirstName(theEmployee);
+		//employeeRepository.updateEmployeeFirstName(theEmployee);
 
 		// display updating Client
 		System.out.println("Updated Client: " + theEmployee);
 
 	}
 
-	private void queryForClientByLastName(EmployeeDAO employeeDAO) {
+	private void queryForClientByLastName(EmployeeRepository employeeRepository) {
 		// get a List
-		List<Employee> theClientsLastName = employeeDAO.findEmployeeByLastName("Perez");
+		//List<Employee> theClientsLastName = employeeRepository.findEmployeeByLastName("Perez");
 
 		// display list of Clients
-		for(Employee tempEmployee : theClientsLastName){
-			System.out.println(tempEmployee);
+		//for(Employee tempEmployee : theClientsLastName){
+			//System.out.println(tempEmployee);
 		}
-	}
 
-	private void queryForClient(EmployeeDAO employeeDAO) {
+	private void queryForClient(EmployeeRepository employeeRepository) {
 		// get a  list of Clients
-		List<Employee> theEmployees = employeeDAO.findAllEmployee();
+		List<Employee> theEmployees = employeeRepository.findAll();
 
 		// display list of Clients
 		for(Employee tempEmployee : theEmployees){
@@ -96,14 +97,14 @@ public class CruddemoApplication {
 
 	}
 
-	private void readClient(EmployeeDAO employeeDAO) {
+	private void readClient(EmployeeRepository employeeRepository) {
 		//create a new Client
 		System.out.println("Creating a new Client...");
 		Employee tempEmployee = new Employee("Refael", "Rahavi", "rahavia@gmail.com");
 
 		//save the Client
 		System.out.println("Saving the Clients");
-		employeeDAO.saveEmployee(tempEmployee);
+		employeeRepository.save(tempEmployee);
 
 		//display id form saved Client
 		int theId = tempEmployee.getId();
@@ -111,14 +112,14 @@ public class CruddemoApplication {
 
 		//Retrieve/Read Client base on id primary key
 		System.out.println("Retrieving Client with id: " + theId);
-		Employee myEmployee = employeeDAO.findEmployeeById(theId);
+		Optional<Employee> myEmployee = employeeRepository.findById(theId);
 
 		// Display Client
 		System.out.println("Found the Client: " + myEmployee);
 
 	}
 
-	private void createMultipleClients(EmployeeDAO employeeDAO) {
+	private void createMultipleClients(EmployeeRepository employeeRepository) {
 		// creating 5 Employee Objects
 		System.out.println("Creating 5 new Employee...");
 		Employee tempEmployee1 = new Employee("Leslie", "Andrews", "leslie@email.com");
@@ -129,14 +130,14 @@ public class CruddemoApplication {
 
 		// save the Client Objects
 		System.out.println("Saving the Employee");
-		employeeDAO.saveEmployee(tempEmployee1);
-		employeeDAO.saveEmployee(tempEmployee2);
-		employeeDAO.saveEmployee(tempEmployee3);
-		employeeDAO.saveEmployee(tempEmployee4);
-		employeeDAO.saveEmployee(tempEmployee5);
+		employeeRepository.save(tempEmployee1);
+		employeeRepository.save(tempEmployee2);
+		employeeRepository.save(tempEmployee3);
+		employeeRepository.save(tempEmployee4);
+		employeeRepository.save(tempEmployee5);
 	}
 
-	private void createEmployee(EmployeeDAO employeeDAO){
+	private void createEmployee(EmployeeRepository employeeRepository){
 
 		// creating a new Employee Object
 		System.out.println("Creating a new Employee...");
@@ -144,7 +145,7 @@ public class CruddemoApplication {
 
 		// save the Employee Object
 		System.out.println("Saving the Employee...");
-		employeeDAO.saveEmployee(tempEmployee);
+		employeeRepository.save(tempEmployee);
 
 		// Display id from the saving Employee
 		System.out.println("Saved Employee. Generated id " + tempEmployee.getId());
